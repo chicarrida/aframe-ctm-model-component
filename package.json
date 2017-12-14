@@ -1,0 +1,19 @@
+{
+  "name": "aframe-ctm-model-component",
+  "version": "1.0.0",
+  "description": "Load OpneCTM models",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chicarrida/aframe-ctm-model-component.git"
+  },
+  "author": "Melanie Krauth",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chicarrida/aframe-ctm-model-component/issues"
+  },
+  "homepage": "https://github.com/chicarrida/aframe-ctm-model-component#readme"
+}
