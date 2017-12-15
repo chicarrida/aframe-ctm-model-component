@@ -1,8 +1,8 @@
 {
   "name": "aframe-ctm-model-component",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Load OpneCTM models",
-  "main": "bundle.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
