@@ -1,8 +1,8 @@
 {
   "name": "aframe-ctm-model-component",
-  "version": "1.0.0",
+  "version": "1.0.11",
   "description": "Load OpneCTM models",
-  "main": "index.js",
+  "main": "bundle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/chicarrida/aframe-ctm-model-component/issues"
   },
-  "homepage": "https://github.com/chicarrida/aframe-ctm-model-component#readme"
+  "homepage": "https://github.com/chicarrida/aframe-ctm-model-component#readme",
+  "devDependencies": {
+
+  }
 }

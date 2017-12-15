@@ -8,7 +8,9 @@
  * @author alteredq / http://alteredqualia.com/
  */
 
-THREE.CTMLoader = function () {
+ var CTM = require('./ctm');
+
+module.exports = THREE.CTMLoader = function () {
 
 	THREE.Loader.call( this );
 
@@ -108,51 +110,19 @@ THREE.CTMLoader.prototype.load = function( url, callback, parameters ) {
 
 				var s = Date.now();
 
-				if ( parameters.useWorker ) {
+				for ( var i = 0; i < offsets.length; i ++ ) {
 
-					var worker = parameters.worker || new Worker( "js/loaders/ctm/CTMWorker.js" );
+					var stream = new CTM.Stream( binaryData );
+					stream.offset = offsets[ i ];
 
-					worker.onmessage = function( event ) {
+					var ctmFile = new CTM.File( stream );
 
-						var files = event.data;
-
-						for ( var i = 0; i < files.length; i ++ ) {
-
-							var ctmFile = files[ i ];
-
-							var e1 = Date.now();
-							// console.log( "CTM data parse time [worker]: " + (e1-s) + " ms" );
-
-							scope.createModel( ctmFile, callback );
-
-							var e = Date.now();
-							console.log( "model load time [worker]: " + (e - e1) + " ms, total: " + (e - s));
-
-						}
-
-
-					};
-
-					worker.postMessage( { "data": binaryData, "offsets": offsets } );
-
-				} else {
-
-					for ( var i = 0; i < offsets.length; i ++ ) {
-
-						var stream = new CTM.Stream( binaryData );
-						stream.offset = offsets[ i ];
-
-						var ctmFile = new CTM.File( stream );
-
-						scope.createModel( ctmFile, callback );
-
-					}
-
-					//var e = Date.now();
-					//console.log( "CTM data parse time [inline]: " + (e-s) + " ms" );
+					scope.createModel( ctmFile, callback );
 
 				}
 
+				//var e = Date.now();
+				//console.log( "CTM data parse time [inline]: " + (e-s) + " ms" );
 			} else {
 
 				console.error( "Couldn't load [" + url + "] [" + xhr.status + "]" );

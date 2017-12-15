@@ -26,6 +26,8 @@ References:
   http://openctm.sourceforge.net/
 */
 
+var LZMA = require('./lzma');
+
 var CTM = CTM || {};
 
 // browserify support
@@ -104,7 +106,7 @@ CTM.FileBody = function(header) {
 
 	this.indices = new Uint32Array(data, 0, i);
 
-	this.vertices = new Float32Array(data, i * 4, v);
+	this.vertices = new Float32Array(data, i * 4, v);LZMA
 
 	if ( header.hasNormals() ) {
 		this.normals = new Float32Array(data, (i + v) * 4, n);

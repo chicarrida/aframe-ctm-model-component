@@ -7,6 +7,8 @@ if(typeof AFRAME === 'undefined'){
   throw new Error('Component attempted to register before AFRAME was available.');
 }
 
+var CTMLoader = require('./js/CTMLoader');
+
 AFRAME.registerComponent('ctm', {
     schema: {
         src: {type: 'asset'},
@@ -19,7 +21,7 @@ AFRAME.registerComponent('ctm', {
 
 
     init: function () {
-        var ctmLoader = new THREE.CTMLoader();
+        var ctmLoader = new CTMLoader();
         var that = this;
 
         var textureLoader = new THREE.TextureLoader();
@@ -35,8 +37,8 @@ AFRAME.registerComponent('ctm', {
           mesh.material.side = that.data.side;
 
           var bBox = new THREE.Box3().setFromObject(mesh);
-          let max = Math.max(bBox.getSize().x, bBox.getSize().y, bBox.getSize().z);
-          let scaleFactor = that.data.scale/max;
+          var max = Math.max(bBox.getSize().x, bBox.getSize().y, bBox.getSize().z);
+          var scaleFactor = that.data.scale/max;
           mesh.scale.multiplyScalar(scaleFactor);
 
           if(that.data.name !== ''){
@@ -45,7 +47,7 @@ AFRAME.registerComponent('ctm', {
 
           that.el.setObject3D('mesh', mesh);
 
-        }, { useWorker: true, worker: new Worker( "../js/CTMWorker.js" ), useBuffer: false} );
+        } );
     },
 
     update: function(){
